@@ -14,7 +14,11 @@ class WidgetsController extends Controller
     public function index(Request $request)
     {
         $widgets = Widget::get();
-        return \View::make('widgets.index', [ 'widgets'=>$widgets ]);
+        if ( \Request::ajax() ) {
+            $html = \View::make('widgets.index', [ 'widgets'=>$widgets ])->render();
+        } else {
+            return \View::make('widgets.index', [ 'widgets'=>$widgets ]);
+        }
     }
 
 }

@@ -13,6 +13,7 @@
 
 Route::group([], function() {
     Route::resource('widgets', 'WidgetsController');
+    Route::resource('products', 'ProductsController');
 });
 
 Route::get('/', function () {
