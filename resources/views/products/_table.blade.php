@@ -16,4 +16,11 @@
             <td>{{ \App\Product::renderLineItemValue($o) }} </td>
         </tr>
     @endforeach
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ $total ?? 'N/A' }}</td>
+        </tr>
 </table>

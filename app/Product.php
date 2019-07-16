@@ -48,6 +48,16 @@ class Product
         return '$'.number_format((float)$dollars, 2, '.', '');
     }
 
+    public static function renderTotalValue($collection) : string
+    {
+        $sum = 0;
+        foreach ($collection as $o) {
+            $sum += $o->price * $o->qty; // in cents
+        }
+        $dollars =  $sum / 100;
+        return '$'.number_format((float)$dollars, 2, '.', '');
+    }
+
     // Init the store file
     protected static function init() 
     {

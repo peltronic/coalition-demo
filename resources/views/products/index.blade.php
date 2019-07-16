@@ -43,7 +43,7 @@
                 The "Total value number" should be calculated as (Quantity in stock * Price per item).
             --}}
             <div id="crate-table">
-            @include('products._table', ['products'=>$products])
+            @include('products._table', ['products'=>$products, 'total'=>$total??null])
             </div>
         </div>
     </section>

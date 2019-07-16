@@ -14,11 +14,24 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::get();
+        $total = Product::renderTotalValue($products);
+
+        // Sort by date/time submitted, latest on "top"
+        usort($products, function($a, $b) {
+            return strtotime($b->timestamp) - strtotime($a->timestamp);
+        });
+
         if ( \Request::ajax() ) {
             $html = \View::make('products._table', [ 'products'=>$products ])->render();
-        return response()->json(['html'=>$html]);
+            return response()->json([
+                'html'=>$html,
+                'total'=>$total,
+            ]);
         } else {
-            return \View::make('products.index', [ 'products'=>$products ]);
+            return \View::make('products.index', [ 
+                'products'=>$products,
+                'total'=>$total,
+            ]);
         }
     }
 
